@@ -15,25 +15,6 @@ connectDB();
 
 app.use(express.json())
 
-// app.get('/', (req, res) =>{
-//     res.send("Api is running on port 5000");
-// })
-
-
-// // app.get('/api/chat', (req, res) => {
-// //     res.send(chats)
-// // })
-
-
-// // app.get('/api/chat/:id', (req, res) =>{
-// //     //console.log(req.params.id)
-// //     const singleChat = chats.filter((chat) =>{
-// //         return chat._id === req.params.id
-// //     })
-
-// //     res.send(singleChat)
-// // })
-
 app.use('/api/user', userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use('/api/message', messageRoutes);
