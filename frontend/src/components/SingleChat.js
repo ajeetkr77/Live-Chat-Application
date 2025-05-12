@@ -44,10 +44,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
       setLoading(true);
 
-      const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
-        config
-      );
+      if (selectedChat && selectedChat._id) {
+        const { data } = await axios.get(
+          `/api/message/${selectedChat._id}`,
+          config
+        );
+      }
       setMessages(data);
       setLoading(false);
       socket.emit("join chat", selectedChat._id);
