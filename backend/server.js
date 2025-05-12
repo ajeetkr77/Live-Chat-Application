@@ -14,28 +14,46 @@ connectDB();
 
 app.use(express.json())
 
-app.get('/', (req, res) =>{
-    res.send("Api is running on port 5000");
-})
-
-
-// app.get('/api/chat', (req, res) => {
-//     res.send(chats)
+// app.get('/', (req, res) =>{
+//     res.send("Api is running on port 5000");
 // })
 
 
-// app.get('/api/chat/:id', (req, res) =>{
-//     //console.log(req.params.id)
-//     const singleChat = chats.filter((chat) =>{
-//         return chat._id === req.params.id
-//     })
+// // app.get('/api/chat', (req, res) => {
+// //     res.send(chats)
+// // })
 
-//     res.send(singleChat)
-// })
+
+// // app.get('/api/chat/:id', (req, res) =>{
+// //     //console.log(req.params.id)
+// //     const singleChat = chats.filter((chat) =>{
+// //         return chat._id === req.params.id
+// //     })
+
+// //     res.send(singleChat)
+// // })
 
 app.use('/api/user', userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use('/api/message', messageRoutes);
+
+// --------------------------deployment------------------------------
+
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+
+// --------------------------deployment------------------------------
 
 app.use(notFound)
 app.use(errorHandler)
