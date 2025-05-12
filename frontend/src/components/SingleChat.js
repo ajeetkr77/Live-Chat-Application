@@ -49,10 +49,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           `/api/message/${selectedChat._id}`,
           config
         );
+      
+       setMessages(data);
+       setLoading(false);
+       socket.emit("join chat", selectedChat._id);
       }
-      setMessages(data);
-      setLoading(false);
-      socket.emit("join chat", selectedChat._id);
     } catch (error) {
       toast({
         title: "Error Occured!",
