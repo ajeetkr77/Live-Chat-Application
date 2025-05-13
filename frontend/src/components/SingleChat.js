@@ -14,7 +14,7 @@ import { ChatState } from "../Context/ChatProvider";
 import Lottie from "lottie-react";
 import animationData from "../animations/typing.json";
 import io from "socket.io-client";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://live-chat-application-e21p.onrender.com"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 
